@@ -1,2 +1,7 @@
 pt:
-  hello: "Olá mundo"
+  errors:
+    blank: "não pode ficar em branco"
+    too_short: "está muito curto (mínimo é %{count} caracteres)"
+    too_long: "está muito longo (máximo é %{count} caracteres)"
+    invalid: "é inválido"
+    taken: "já está em uso"
