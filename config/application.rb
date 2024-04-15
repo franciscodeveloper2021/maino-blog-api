@@ -11,9 +11,6 @@ module MainoBlogApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
-    # Set the default locale
-    config.i18n.default_locale = :pt
-
     # Allowing fallback to happen
     config.i18n.fallbacks = true
 
@@ -22,11 +19,6 @@ module MainoBlogApi
 
     # Set the default time zone
     config.time_zone = 'Brasilia'
-
-    # Please, add to the `ignore` list any other `lib` subdirectories that do
-    # not contain `.rb` files, or that should not be reloaded or eager loaded.
-    # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -40,5 +32,10 @@ module MainoBlogApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Configure autoload paths
+    config.autoload_paths << Rails.root.join("lib").to_s
+    config.autoload_paths += Dir[Rails.root.join('lib', '**/')]
+    config.autoload_paths -= %W(#{config.root}/lib/assets #{config.root}/lib/tasks)
   end
 end
