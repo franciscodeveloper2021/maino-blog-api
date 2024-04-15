@@ -91,7 +91,23 @@ RSpec.describe User, type: :model do
       end
     end
 
+    describe "validations when attribute confirmation is required" do
+      it "validates password confirmation matching" do
+        user.password_digest = "password"
+        user.password_digest_confirmation = "different_password"
+        user.valid?
 
+        expect(user.errors[:password_digest_confirmation]).to include(I18n.t("errors.match"))
+      end
+
+      it "validates password confirmation presence" do
+        user.password_digest = "password"
+        user.password_digest_confirmation = nil
+        user.valid?
+
+        expect(user.errors[:password_digest_confirmation]).to include(I18n.t("errors.blank"))
+      end
+    end
 
     describe "validations when attributes pursue regex" do
       let(:invalid_emails) do

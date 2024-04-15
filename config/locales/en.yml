@@ -5,3 +5,4 @@ en:
     too_long: "is too long (maximum is %{count} characters)"
     invalid: "is invalid"
     taken: "has already been taken"
+    match: "doesn't match Password digest"

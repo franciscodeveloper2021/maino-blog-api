@@ -5,3 +5,4 @@ pt:
     too_long: "está muito longo (máximo é %{count} caracteres)"
     invalid: "é inválido"
     taken: "já está em uso"
+    match: "senha não é igual"
