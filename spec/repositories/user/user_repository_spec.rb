@@ -25,11 +25,12 @@ RSpec.describe UserModule::UserRepository, type: :repository do
         user.save
 
         updated_params = { name: "John Updated" }
+
         user_repo.update(user.id, updated_params)
 
         user.reload
 
-        expect(user.name).to eq("John Updated")
+        expect(user.name).to eq(updated_params[:name])
       end
     end
 
