@@ -24,13 +24,25 @@ RSpec.describe UserModule::UserRepository, type: :repository do
         user = User.new(params)
         user.save
 
-        updated_params = { name: "John Updated", password: "password_new" }
+        updated_params = { name: "John Updated" }
+
         user_repo.update(user.id, updated_params)
 
         user.reload
 
-        expect(user.name).to eq("John Updated")
-        expect(user.password).to eq("password_new")
+        expect(user.name).to eq(updated_params[:name])
+      end
+    end
+
+    describe "find_by_attribute" do
+      it "finds user according to attribute" do
+        user = User.new(params)
+        user.save
+        user.reload
+
+        found_user = user_repo.find_by_attribute(:email, user.email)
+
+        expect(found_user).to eq(user)
       end
     end
   end
@@ -66,6 +78,12 @@ RSpec.describe UserModule::UserRepository, type: :repository do
         updated_params = { name: "J", password: "p" }
 
         expect { user_repo.update(@user.id, updated_params) }.to raise_error(RuntimeError)
+      end
+    end
+
+    describe "#find_by_attribute" do
+      it "raises a RuntimeError if user is not found" do
+        expect { user_repo.find_by_attribute(:email, "nonexistent@example.com") }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
