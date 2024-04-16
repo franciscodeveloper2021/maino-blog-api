@@ -4,18 +4,25 @@ RSpec.describe UserModule::UserRepository, type: :repository do
   let(:user_repo) { UserModule::UserRepository.new }
 
   context "with valid params" do
+    let(:params) do
+      {
+        name: "John",
+        last_name: "Doe",
+        email: "john@example.com",
+        password_digest: "password123",
+        password_digest_confirmation: "password123"
+      }
+    end
 
     describe "#create" do
       it "creates a new user" do
-        params = {
-          name: "John",
-          last_name: "Doe",
-          email: "john@example.com",
-          password_digest: "password123",
-          password_digest_confirmation: "password123"
-        }
-
         expect { user_repo.create(params) }.to change(User, :count).by(1)
+      end
+
+      it "returns user data except password" do
+        user = user_repo.create(params)
+
+        expect(user.keys).not_to include('password_digest')
       end
     end
   end
