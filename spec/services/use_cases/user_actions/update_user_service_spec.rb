@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe UseCases::UserActions::CreateUserService, type: :service do
+RSpec.describe UseCases::UserActions::UpdateUserService, type: :service do
   let(:user_repository) { double("UserRepository") }
 
   context "when repository is injected" do
     describe "initialize" do
       it "receives the user repository as a dependency" do
-        create_user_service = described_class.new(user_repository)
+        update_user_service = described_class.new(user_repository)
 
-        expect(create_user_service.instance_variable_get(:@user_repository)).to eq(user_repository)
+        expect(update_user_service.instance_variable_get(:@user_repository)).to eq(user_repository)
       end
     end
   end

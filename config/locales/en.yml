@@ -8,4 +8,5 @@ en:
     match: "doesn't match Password digest"
     user_creation: "Error creating user: %{errors}"
     user_update: "Error updating user: %{errors}"
+    user_not_found: "Error, couldn't find user with id: %{id}"
     repository_required: "Repository is required"

@@ -6,8 +6,7 @@ RSpec.describe User, type: :model do
       name: "John",
       last_name: "Doe",
       email: "johndoe@gmail.com",
-      password_digest: "123456",
-      password_digest_confirmation: "123456"
+      password: "123456",
     )
   end
 
@@ -15,7 +14,7 @@ RSpec.describe User, type: :model do
 
     describe "validations when required attributes are not present" do
       before do
-        user.assign_attributes(name: nil, last_name: nil, email: nil, password_digest: nil)
+        user.assign_attributes(name: nil, last_name: nil, email: nil, password: nil)
         user.valid?
       end
 
@@ -36,7 +35,7 @@ RSpec.describe User, type: :model do
       end
 
       it "validates presence of password" do
-        expect(user.errors[:password_digest]).to include(I18n.t('errors.blank'))
+        expect(user.errors[:password]).to include(I18n.t('errors.blank'))
       end
     end
 
@@ -84,28 +83,10 @@ RSpec.describe User, type: :model do
       end
 
       it "validates password minimum length" do
-        user.password_digest = "123"
+        user.password = "123"
         user.valid?
 
-        expect(user.errors[:password_digest]).to include(I18n.t('errors.too_short', count: 6))
-      end
-    end
-
-    describe "validations when attribute confirmation is required" do
-      it "validates password confirmation matching" do
-        user.password_digest = "password"
-        user.password_digest_confirmation = "different_password"
-        user.valid?
-
-        expect(user.errors[:password_digest_confirmation]).to include(I18n.t("errors.match"))
-      end
-
-      it "validates password confirmation presence" do
-        user.password_digest = "password"
-        user.password_digest_confirmation = nil
-        user.valid?
-
-        expect(user.errors[:password_digest_confirmation]).to include(I18n.t("errors.blank"))
+        expect(user.errors[:password]).to include(I18n.t('errors.too_short', count: 6))
       end
     end
 
