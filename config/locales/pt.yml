@@ -8,3 +8,4 @@ pt:
     match: "senha não é igual"
     user_creation: "Erro ao criar usuário: %{errors}"
     user_update: "Erro ao editar usuário: %{errors}"
+    repository_required: "Repositório deve ser injetado"
