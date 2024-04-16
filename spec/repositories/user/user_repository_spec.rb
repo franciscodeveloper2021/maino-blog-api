@@ -34,6 +34,21 @@ RSpec.describe UserModule::UserRepository, type: :repository do
       end
     end
 
+    describe "#update_password" do
+      it "updates the user's password" do
+        user = User.new(params)
+        user.save
+
+        new_password_params = {
+          password: "newpassword456",
+          password_confirmation: "newpassword456"
+        }
+
+        updated_user = user_repo.update_password(user.id, new_password_params)
+        expect(updated_user.authenticate(new_password_params[:password])).to eq(updated_user)
+      end
+    end
+
     describe "find_by_attribute" do
       it "finds user according to attribute" do
         user = User.new(params)
@@ -78,6 +93,23 @@ RSpec.describe UserModule::UserRepository, type: :repository do
         updated_params = { name: "J", password: "p" }
 
         expect { user_repo.update(@user.id, updated_params) }.to raise_error(RuntimeError)
+      end
+    end
+
+    describe "#update_password" do
+      before(:each) do
+        @user = User.new(params)
+        @user.save
+      end
+
+      it "raises ArgumentError if missing password params" do
+        expect { user_repo.update_password(@user.id, {}) }.to raise_error(ArgumentError)
+      end
+
+      it "raises RuntimeError if user not found" do
+        non_existent_user_id = User.maximum(:id).to_i + 1
+
+        expect { user_repo.update_password(non_existent_user_id, params) }.to raise_error(RuntimeError)
       end
     end
 
