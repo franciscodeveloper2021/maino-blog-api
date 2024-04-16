@@ -1,5 +1,3 @@
-require 'jwt'
-
 class UsersController < ApplicationController
   def initialize
     super
@@ -7,6 +5,8 @@ class UsersController < ApplicationController
 
     @create_user_service = UseCases::UserActions::CreateUserService.new(@user_repository)
     @update_user_service = UseCases::UserActions::UpdateUserService.new(@user_repository)
+
+    @login_authentication_service = UseCases::Authentication::LoginAuthenticationService.new(@user_repository)
   end
 
   def create
@@ -16,13 +16,12 @@ class UsersController < ApplicationController
   end
 
   def log_in
-    user = @user_repository.find_by_attribute(:email, params[:email])
+    result = @login_authentication_service.perform(params[:email], params[:password])
 
-    if user && user.authenticate(params[:password])
-      token = JWT.encode({ user_id: user.id}, 'your_secret_key', 'HS256')
-      render json: { token: token }
+    if result[:token]
+      render json: result
     else
-      render json: { error: I18n.t('errors.invalid_email_or_password')}, status: :unauthorized
+      render json: result, status: :unauthorized
     end
   end
 

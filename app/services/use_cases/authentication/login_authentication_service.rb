@@ -1,20 +1,20 @@
 module UseCases
   module Authentication
-    class LoginUserService
+    class LoginAuthenticationService
 
       def initialize(user_repository)
         raise ArgumentError, I18n.t('errors.repository_required') if !user_repository
         @user_repository = user_repository
       end
 
-      def perform
-        user = @user_repository.find_by_attribute(:email, params[:email])
+      def perform(email, password)
+        user = @user_repository.find_by_attribute(:email, email)
 
-        if user && user.authenticate(params[:password])
+        if user && user.authenticate(password)
           token = JWT.encode({ user_id: user.id}, 'your_secret_key', 'HS256')
-          render json: { token: token }
+          { token: token }
         else
-          render json: { error: I18n.t('errors.invalid_email_or_password')}, status: :unauthorized
+          { error: I18n.t('errors.invalid_email_or_password') }
         end
       end
     end
