@@ -9,6 +9,14 @@ module UserModule
       user
     end
 
+    def find_by_attribute(attribute, value)
+      user = User.find_by(attribute => value)
+
+      raise ActiveRecord::RecordNotFound if user.nil?
+
+      user
+    end
+
     def update(current_user_id, params)
       user = User.find_by_id(current_user_id)
       raise RuntimeError, I18n.t('errors.user_not_found', id: current_user_id) if user.nil?

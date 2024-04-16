@@ -10,3 +10,4 @@ pt:
     user_update: "Erro ao editar usuário: %{errors}"
     user_not_found: "Erro, usuário com id %{id} não encontrado"
     repository_required: "Repositório deve ser injetado"
+    invalid_email_or_password: "Email ou senha inválido"

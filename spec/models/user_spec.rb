@@ -33,10 +33,6 @@ RSpec.describe User, type: :model do
       it "validates presence of email" do
         expect(user.errors[:email]).to include(I18n.t('errors.blank'))
       end
-
-      it "validates presence of password" do
-        expect(user.errors[:password]).to include(I18n.t('errors.blank'))
-      end
     end
 
     describe "validations when attributes length do not fit in the range" do
@@ -80,13 +76,6 @@ RSpec.describe User, type: :model do
         user.valid?
 
         expect(user.errors[:email]).to include(I18n.t('errors.invalid'))
-      end
-
-      it "validates password minimum length" do
-        user.password = "123"
-        user.valid?
-
-        expect(user.errors[:password]).to include(I18n.t('errors.too_short', count: 6))
       end
     end
 

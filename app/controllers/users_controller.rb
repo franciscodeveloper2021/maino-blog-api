@@ -13,6 +13,17 @@ class UsersController < ApplicationController
     render json: user, except: [:password], status: :created
   end
 
+  def log_in
+    user = @user_repository.find_by_attribute(:email, params[:email])
+
+    if user && user.authenticate(params[:password])
+      token = JWT.encode({ user_id: user.id}, 'your_secret_key', 'HS256')
+      render json: { token: token }
+    else
+      render json: { error: I18n.t('errors.invalid_email_or_password')}, status: :unauthorized
+    end
+  end
+
   def update
     updated_user = @update_user_service.update(params[:id], user_params)
 
