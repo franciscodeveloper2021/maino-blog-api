@@ -1,3 +1,5 @@
+require 'jwt'
+
 class UsersController < ApplicationController
   def initialize
     super
