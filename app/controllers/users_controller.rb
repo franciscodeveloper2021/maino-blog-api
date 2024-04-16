@@ -1,4 +1,8 @@
+require "jwt"
+
 class UsersController < ApplicationController
+  before_action :authenticate_user, only: [:update]
+
   def initialize
     super
     @user_repository = UserModule::UserRepository.new
@@ -35,5 +39,18 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :last_name, :email, :password)
+  end
+
+  def authenticate_user
+    token = request.headers['Authorization']&.split(' ')&.last
+    return render json: { error: 'Token missing' }, status: :unauthorized unless token
+
+    decoded_token = JWT.decode(token, 'your_secret_key', true, algorithm: 'HS256')
+    user_id = decoded_token.first['user_id']
+    @current_user = User.find_by(id: user_id)
+
+    render json: { error: 'Invalid token' }, status: :unauthorized unless @current_user
+  rescue JWT::DecodeError
+    render json: { error: 'Invalid token' }, status: :unauthorized
   end
 end
