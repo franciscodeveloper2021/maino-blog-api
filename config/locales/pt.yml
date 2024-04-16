@@ -6,3 +6,4 @@ pt:
     invalid: "é inválido"
     taken: "já está em uso"
     match: "senha não é igual"
+    user_creation: "Erro ao criar usuário: %{errors}"

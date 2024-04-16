@@ -6,3 +6,4 @@ en:
     invalid: "is invalid"
     taken: "has already been taken"
     match: "doesn't match Password digest"
+    user_creation: "Error creating user: %{errors}"
