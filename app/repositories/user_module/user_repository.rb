@@ -6,6 +6,7 @@ module UserModule
       raise RuntimeError, I18n.t('errors.user_creation', errors: user.errors.full_messages) if !user.valid?
 
       user.save
+      user
     end
   end
 end
