@@ -18,13 +18,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_223026) do
     t.string "name", limit: 50, null: false
     t.string "last_name", limit: 50, null: false
     t.string "email", limit: 254, null: false
-    t.string "password_digest", null: false
+    t.string "password", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.check_constraint "length(last_name::text) >= 2", name: "min_length_lastname"
     t.check_constraint "length(name::text) >= 2", name: "min_length_name"
-    t.check_constraint "length(password_digest::text) >= 6", name: "min_length_password_digest"
+    t.check_constraint "length(password::text) >= 6", name: "min_length_password"
   end
 
 end
