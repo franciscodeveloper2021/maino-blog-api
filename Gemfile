@@ -8,6 +8,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "i18n", "~> 1.8"
+gem "rack-cors"
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 
