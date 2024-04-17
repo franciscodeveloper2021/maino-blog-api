@@ -25,21 +25,6 @@ module UserModule
       user
     end
 
-    def update_password(current_user_id, password_params)
-      user = find_user_by_id(current_user_id)
-
-      unless password_params[:password] && password_params[:password_confirmation]
-        raise ArgumentError, I18n.t('errors.missing_password_params')
-      end
-
-      user.password = password_params[:password]
-      user.password_confirmation = password_params[:password_confirmation]
-
-      user.save if user.valid?
-
-      user
-    end
-
     private
 
     def find_user_by_id(user_id)
