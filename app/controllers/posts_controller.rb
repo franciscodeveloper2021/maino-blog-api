@@ -13,10 +13,27 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    render json: @post, status: :ok
+    render json: @post.slice(:id, :title, :body), status: :ok
   end
 
   def create
+    post = Post.new(post_params)
+    raise RuntimeError if !post.valid?
+
+    post.save
+
+    render json: post, status: :created
+  end
+
+  def update
+    @post = Post.find_by_id(params[:id])
+    return render json: { error: 'Post not found' }, status: :not_found unless @post
+
+    if @post.attributes = post_params
+      render json: @post.slice(:id, :title, :body), status: :ok
+    else
+      render json: { errors: @post.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
