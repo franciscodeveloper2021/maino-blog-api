@@ -3,6 +3,4 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [:index, :show, :create, :update, :destroy]
   root '/login', to: 'users#log_in'
-
-  root 'users#welcome'
 end

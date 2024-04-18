@@ -13,10 +13,6 @@ class UsersController < ApplicationController
     @login_authentication_service = UseCases::Authentication::LoginAuthenticationService.new(@user_repository)
   end
 
-  def welcome
-    render plain: "Bem-vindo ao meu aplicativo"
-  end
-
   def show
     user = @user_repository.find_by_id(params[:id])
 
