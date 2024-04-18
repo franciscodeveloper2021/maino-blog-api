@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
     @create_user_service = UseCases::UserActions::CreateUserService.new(@user_repository)
     @update_user_service = UseCases::UserActions::UpdateUserService.new(@user_repository)
-
     @login_authentication_service = UseCases::Authentication::LoginAuthenticationService.new(@user_repository)
   end
 

@@ -7,7 +7,12 @@ class PostsController < ApplicationController
     offset = (page - 1) * per_page
     posts = Post.order(created_at: :desc).limit(per_page).offset(offset)
 
-    render json: posts, status: :ok
+    serialized_posts = posts.map do |post|
+      post_attributes = post.attributes
+      post_attributes[:comments] = post.comments.map(&:attributes)
+      post_attributes
+    end
+    render json: serialized_posts, status: :ok
   end
 
   def show
