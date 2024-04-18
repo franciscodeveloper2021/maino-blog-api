@@ -1,7 +1,7 @@
 databases:
-  - name: maino_blog_api_production
-    databaseName: maino_blog_api_production
-    user: maino_blog_api
+  - name: mysite
+    databaseName: mysite
+    user: mysite
     plan: free
 
 services:
