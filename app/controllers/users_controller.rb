@@ -1,7 +1,7 @@
 require "jwt"
 
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: [:update]
+  before_action :authenticate_user, only: [:show, :update]
 
   def initialize
     super
@@ -13,10 +13,22 @@ class UsersController < ApplicationController
     @login_authentication_service = UseCases::Authentication::LoginAuthenticationService.new(@user_repository)
   end
 
+  def show
+    user = @user_repository.find_by_id(params[:id])
+
+    render json: user, except: [:password], status: :ok
+  end
+
   def create
     user = @create_user_service.create(user_params)
 
     render json: user, except: [:password], status: :created
+  end
+
+  def update
+    updated_user = @update_user_service.update(params[:id], user_params)
+
+    render json: updated_user, except: [:password], status: :ok
   end
 
   def log_in
@@ -27,12 +39,6 @@ class UsersController < ApplicationController
     else
       render json: result, status: :unauthorized
     end
-  end
-
-  def update
-    updated_user = @update_user_service.update(params[:id], user_params)
-
-    render json: updated_user, except: [:password], status: :ok
   end
 
   private
