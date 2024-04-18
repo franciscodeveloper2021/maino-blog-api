@@ -13,6 +13,7 @@ RSpec.describe Comment, type: :model do
   end
 
   context "when valid params" do
+
     before do
       @user = User.new(name: "Chico", last_name: "Leite", email: "chicoleiteee@gmail.com", password: "123456")
       @user.save
