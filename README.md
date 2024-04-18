@@ -28,8 +28,8 @@ Na área logada, os usuários autenticados devem poder:
 ## Tecnologias Utilizadas
 
 - Linguagem de programação: Ruby.
-- Framework de desenvolvimento Ruby on Rails.
-- Banco de dados Postgresql.
-- Ferramentas de autenticação e segurança JWT, bcrypt.
+- Framework de desenvolvimento: Ruby on Rails.
+- Banco de dados: Postgresql.
+- Ferramentas de autenticação e segurança: JWT, bcrypt.
 
 
