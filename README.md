@@ -145,3 +145,8 @@ Acesse a rota: `https://mysite-hojm.onrender.com/users/:id`
 ```
 
 - **Importante** Você só poderá editar o seu usuário e se tiver logado
+
+
+### Aviso
+
+Devido ao uso gratuito do deploy, os requests sofrem um delay de até 50 segundos.
