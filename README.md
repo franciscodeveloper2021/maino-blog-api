@@ -5,7 +5,7 @@ Este repositório tem como objetivo apresentar a solução desenvolvida para o d
 ### Avisos
 
 - Devido a priorização de outras funcionalidades para a otimização de tempo, 1 funcionalidade ficou de fora, a **Recuperação de Senha**
-- Apenas a API sem as views foi possível de ser deployada. Porém vocÊ pode visualizar os posts no browser pela rota `https://mysite-hojm.onrender.com`
+- Apenas a API sem as views foi possível de ser deployada. Porém você pode visualizar os posts no browser pela rota `https://mysite-hojm.onrender.com` e trocar as páginas por exemplo: `https://mysite-hojm.onrender.com/?page=2`. Até então há 4 páginas com a paginação dos posts.
 - Os testes devem ser realizados por meio de um cliente como **Postman** ou **Insomnia**.
 
 ## Requisitos do Desafio
