@@ -1,6 +1,14 @@
 # Desafio API de Blog - Maino
 
 Este repositório tem como objetivo apresentar a solução desenvolvida para o desafio proposto pela empresa Maino, que consiste na criação de uma API para um blog.
+
+### Avisos
+
+- Devido ao uso gratuito do deploy, os requests sofrem um delay de até 50 segundos.
+- Devido a priorização de outras funcionalidades para a otimização de tempo, 1 funcionalidade ficou de fora, é ela **Recuperação de Senha**
+- Apenas a API sem as views foi possível de ser deployada.
+- Os testes devem ser realizados por meio de um cliente como **Postman** ou **Insomnia**.
+
 ## Requisitos do Desafio
 
 ### Área Deslogada
@@ -24,8 +32,6 @@ Este repositório tem como objetivo apresentar a solução desenvolvida para o d
 - Ferramentas de autenticação e segurança: JWT, bcrypt.
 
 ## Como testar
-
-**DISCLAIMER**: Devido à priorização de alguns aspectos como design patterns, testes, etc., não foi possível desenvolver as views para o projeto a tempo de entregar o desafio. Portanto, os testes devem ser realizados por meio de um cliente como **Postman** ou **Insomnia**.
 
 ### Ver os posts publicados por todos os usuários
 
@@ -145,8 +151,3 @@ Acesse a rota: `https://mysite-hojm.onrender.com/users/:id`
 ```
 
 - **Importante** Você só poderá editar o seu usuário e se tiver logado
-
-
-### Aviso
-
-Devido ao uso gratuito do deploy, os requests sofrem um delay de até 50 segundos.
