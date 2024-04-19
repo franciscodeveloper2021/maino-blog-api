@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show, :create, :update, :destroy]
   post 'login', to: 'users#log_in'
 
-  root 'users#welcome'
+  root 'posts#index'
 end
