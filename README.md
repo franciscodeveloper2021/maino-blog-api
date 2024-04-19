@@ -5,7 +5,7 @@ Este repositório tem como objetivo apresentar a solução desenvolvida para o d
 ### Avisos
 
 - Devido ao uso gratuito do deploy, os requests sofrem um delay de até 50 segundos.
-- Devido a priorização de outras funcionalidades para a otimização de tempo, 1 funcionalidade ficou de fora, é ela **Recuperação de Senha**
+- Devido a priorização de outras funcionalidades para a otimização de tempo, 1 funcionalidade ficou de fora, a **Recuperação de Senha**
 - Apenas a API sem as views foi possível de ser deployada.
 - Os testes devem ser realizados por meio de um cliente como **Postman** ou **Insomnia**.
 
